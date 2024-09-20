@@ -4,8 +4,7 @@
   "main": "server.js",
   "homepage": ".",
   "scripts": {
-    "start": "node server.js",
-    "build": "npm run build"
+    "start": "node server.js"
   },
   "keywords": [],
   "author": "",
