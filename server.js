@@ -3,7 +3,6 @@ const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
 const path = require('path');
-
 const app = express();
 const server = http.createServer(app);
 const io = new Server(server, {
@@ -91,9 +90,9 @@ io.on('connection', (socket) => {
         });
     });
 });
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-});
+// app.get('*', (req, res) => {
+//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+// });
 
 // API endpoint to get all code blocks
 app.get('/api/codeblocks', (req, res) => {
@@ -112,7 +111,7 @@ app.get('/api/codeblocks/:id', (req, res) => {
 });
 
 // Start the server
-const PORT = process.env.PORT || 8080;
+const PORT = process.env.PORT || 4000;
 server.listen(PORT,"0.0.0.0" ,() => {
     console.log(`Server is running on port ${PORT}`);
 });

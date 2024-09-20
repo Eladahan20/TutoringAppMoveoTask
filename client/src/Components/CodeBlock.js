@@ -11,10 +11,13 @@ const CodeBlock = () => {
     const [role, setRole] = useState('student');
     const [studentsCount, setStudentsCount] = useState(0);
     const [showSmiley, setShowSmiley] = useState(false); // State to control the smiley display
+   // Use environment variables for the API and socket URLs
+   const API_URL = process.env.REACT_APP_API_URL;
+   const SOCKET_URL = process.env.REACT_APP_SOCKET_URL;
 
     const fetchCodeBlock = async () => {
         try {
-            const response = await axios.get(`http://localhost:4000/api/codeblocks/${id}`);
+            const response = await axios.get(`${API_URL}/api/codeblocks/${id}`);
             setCode(response.data.template);
         } catch (error) {
             console.error('Error fetching code block:', error);
@@ -25,7 +28,7 @@ const CodeBlock = () => {
     useEffect(() => {
         fetchCodeBlock();
 
-        const newSocket = io('http://localhost:4000');
+        const newSocket = io(SOCKET_URL);
         setSocket(newSocket);
 
         newSocket.emit('join_block', id);

@@ -4,16 +4,17 @@ import { Link } from 'react-router-dom';
 
 const Lobby = () => {
     const [codeBlocks, setCodeBlocks] = useState([]);
+    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
-            const response = await axios.get('http://localhost:4000/api/codeblocks');
+            const response = await axios.get(`${API_URL}/api/codeblocks`);
             setCodeBlocks(response.data);
         };
 
         fetchCodeBlocks();
     }, []);
-
+console.log(API_URL);
     return (
         <div>
             <h1>Choose Code Block</h1>
