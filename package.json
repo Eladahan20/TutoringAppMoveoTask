@@ -2,10 +2,12 @@
   "name": "tutoringapp",
   "version": "1.0.0",
   "main": "server.js",
+  "homepage": ".",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
     "start": "node server.js",
-    "dev": "nodemon server.js"
+    "build": "react-scripts build", 
+    "test": "react-scripts test",
+    "eject": "react-scripts eject"
   },
   "keywords": [],
   "author": "",

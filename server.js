@@ -25,6 +25,8 @@ app.use(cors({
     methods: ["GET", "POST"],
     credentials: true // Allow credentials if needed
 }));
+app.use(express.json()); // For parsing JSON requests
+app.use(express.static(path.join(__dirname, 'build')));
 
 // Store users and user counts per code block
 const users = {};
@@ -88,7 +90,9 @@ io.on('connection', (socket) => {
         });
     });
 });
-
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+});
 
 // API endpoint to get all code blocks
 app.get('/api/codeblocks', (req, res) => {
