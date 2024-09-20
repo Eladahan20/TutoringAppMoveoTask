@@ -2,7 +2,6 @@
   "name": "tutoringapp",
   "version": "1.0.0",
   "main": "server.js",
-  "homepage": ".",
   "scripts": {
     "start": "node server.js"
   },
