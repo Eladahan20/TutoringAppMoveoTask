@@ -2,6 +2,7 @@ const express = require('express');
 const http = require('http');
 const { Server } = require('socket.io');
 const cors = require('cors');
+const path = require('path');
 
 const app = express();
 const server = http.createServer(app);
@@ -26,7 +27,7 @@ app.use(cors({
     credentials: true // Allow credentials if needed
 }));
 app.use(express.json()); // For parsing JSON requests
-app.use(express.static(path.join(__dirname, 'build')));
+app.use(express.static(path.join(__dirname, 'client', 'build')));
 
 // Store users and user counts per code block
 const users = {};
@@ -91,7 +92,7 @@ io.on('connection', (socket) => {
     });
 });
 app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'build', 'index.html'));
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
 // API endpoint to get all code blocks
