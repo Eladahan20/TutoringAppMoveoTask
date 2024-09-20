@@ -90,9 +90,9 @@ io.on('connection', (socket) => {
         });
     });
 });
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-// });
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 // API endpoint to get all code blocks
 app.get('/api/codeblocks', (req, res) => {
