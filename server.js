@@ -5,10 +5,11 @@ const cors = require('cors');
 const path = require('path');
 const app = express();
 const server = http.createServer(app);
+require('dotenv').config(); 
 
 // Enable CORS
 app.use(cors({ 
-    origin: "http://localhost:3000", // Your React app URL
+    origin: "*", // Your React app URL
     methods: ["GET", "POST"],
     credentials: true // Allow credentials if needed
 }));
@@ -19,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 // Database //
 const mongoose = require('mongoose');
 const CodeBlock = require('./Models/CodeBlock'); // Import the Mongoose model
-const mongoURI = 'mongodb+srv://dbUser:e43221@cluster0.2mowt.mongodb.net/codeblocks_db?retryWrites=true&w=majority&appName=Cluster0;' // Change 'codeblocks_db' to your database name
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://dbUser:e43221@cluster0.2mowt.mongodb.net/codeblocks_db?retryWrites=true&w=majority&appName=Cluster0;' // Change 'codeblocks_db' to your database name
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -33,7 +34,7 @@ mongoose.connect(mongoURI, {
 // Websocket //
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000",
+        origin: "*",
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -89,7 +90,7 @@ io.on('connection', (socket) => {
         });
     });
 });
-app.get('/', (req, res) => {
+app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
 });
 
