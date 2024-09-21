@@ -102,7 +102,7 @@ app.get('/api/codeblocks', async (req, res) => {
         const codeBlocks = await CodeBlock.find(); // Fetch all code blocks
         res.json(codeBlocks); // Send code blocks as JSON
     } catch (error) {
-        console.error('Error fetching code blocks:', error);
+        console.error('Error fetching code blocks:', error.response.data);
         res.status(500).send('Error fetching code blocks');
     }
 });
@@ -117,7 +117,7 @@ app.get('/api/codeblocks/:id', async (req, res) => {
             res.status(404).send('Code block not found');
         }
     } catch (error) {
-        console.error('Error fetching code block:', error);
+        console.error('Error fetching code block:', error.response.data);
         res.status(500).send('Error fetching code block');
     }
 });
