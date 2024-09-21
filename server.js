@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // Enable CORS
 app.use(cors({ 
-    origin: "*", // Your React app URL
+    origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN , // Your React app URL
     methods: ["GET", "POST"],
     credentials: true // Allow credentials if needed
 }));
@@ -20,7 +20,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 // Database //
 const mongoose = require('mongoose');
 const CodeBlock = require('./Models/CodeBlock'); // Import the Mongoose model
-const mongoURI = 'mongodb+srv://dbUser:e43221@cluster0.2mowt.mongodb.net/codeblocks_db?retryWrites=true&w=majority&appName=Cluster0;' // Change 'codeblocks_db' to your database name
+const mongoURI = process.env.MONGO_URI || 'mongodb+srv://dbUser:e43221@cluster0.2mowt.mongodb.net/codeblocks_db?retryWrites=true&w=majority&appName=Cluster0;' // Change 'codeblocks_db' to your database name
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -30,11 +30,10 @@ mongoose.connect(mongoURI, {
     console.error('Error connecting to MongoDB:', err);
 });
 
-
 // Websocket //
 const io = new Server(server, {
     cors: {
-        origin: "*",
+        origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN ,
         methods: ["GET", "POST"],
         credentials: true
     }

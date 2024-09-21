@@ -17,7 +17,7 @@ const CodeBlock = () => {
 
     const fetchCodeBlock = async () => {
         try {
-            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com//api/codeblocks/${id}`);
+            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks/${id}`);
             setCode(response.data.template);
         } catch (error) {
             console.error('Error fetching code block:', error);
@@ -28,7 +28,7 @@ const CodeBlock = () => {
     useEffect(() => {
         fetchCodeBlock();
 
-        const newSocket = io(SOCKET_URL);
+        const newSocket = io('https://turoring-app-502bde048aa3.herokuapp.com/');
         setSocket(newSocket);
 
         newSocket.emit('join_block', id);
