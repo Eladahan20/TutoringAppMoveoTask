@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // Enable CORS
 app.use(cors({ 
-    origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN , // Your React app URL
+    origin: "*" , 
     methods: ["GET", "POST"],
     credentials: true // Allow credentials if needed
 }));
@@ -98,7 +98,7 @@ app.get('/api/codeblocks', async (req, res) => {
         const codeBlocks = await CodeBlock.find(); // Fetch all code blocks
         res.json(codeBlocks); // Send code blocks as JSON
     } catch (error) {
-        console.error('Error fetching code blocks:', error.response.data);
+        console.error('Error fetching code blocks:', error.message);
         res.status(500).send('Error fetching code blocks');
     }
 });
