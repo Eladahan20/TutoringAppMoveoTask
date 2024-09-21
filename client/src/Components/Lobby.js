@@ -4,11 +4,10 @@ import { Link } from 'react-router-dom';
 
 const Lobby = () => {
     const [codeBlocks, setCodeBlocks] = useState([]);
-    const API_URL = process.env.REACT_APP_API_URL;
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
-            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com//api/codeblocks`);
+            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks`);
             setCodeBlocks(response.data);
         };
 
