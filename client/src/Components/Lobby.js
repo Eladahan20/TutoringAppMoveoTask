@@ -4,6 +4,7 @@ import { Link } from 'react-router-dom';
 
 const Lobby = () => {
     const [codeBlocks, setCodeBlocks] = useState([]);
+    const [error, setError] = useState(null); // To handle errors
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
