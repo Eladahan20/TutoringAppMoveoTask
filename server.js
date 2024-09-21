@@ -19,7 +19,7 @@ app.use(express.static(path.join(__dirname, 'client', 'build')));
 // Database //
 const mongoose = require('mongoose');
 const CodeBlock = require('./Models/CodeBlock'); // Import the Mongoose model
-const mongoURI = 'mongodb://localhost:27017/codeblocks_db'; // Change 'codeblocks_db' to your database name
+const mongoURI = 'mongodb+srv://dbUser:e43221@cluster0.2mowt.mongodb.net/codeblocks_db?retryWrites=true&w=majority&appName=Cluster0;' // Change 'codeblocks_db' to your database name
 mongoose.connect(mongoURI, {
     useNewUrlParser: true,
     useUnifiedTopology: true
@@ -89,9 +89,9 @@ io.on('connection', (socket) => {
         });
     });
 });
-// app.get('*', (req, res) => {
-//     res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-// });
+app.get('/', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
 
 
 // EndPoints //
@@ -125,6 +125,6 @@ app.get('/api/codeblocks/:id', async (req, res) => {
 
 // Start the server
 const PORT = process.env.PORT || 4000;
-server.listen(PORT,"0.0.0.0" ,() => {
+server.listen(PORT,() => {
     console.log(`Server is running on port ${PORT}`);
 });

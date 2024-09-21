@@ -14,6 +14,10 @@ const CodeBlockSchema = new mongoose.Schema({
     solution: {
         type: String,
         required: true
+    },
+    id: {
+        type: Number,
+        required: true
     }
 });
 
