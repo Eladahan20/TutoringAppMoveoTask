@@ -98,13 +98,14 @@ app.get('/', (req, res) => {
 
 // API endpoint to get all code blocks from MongoDB
 app.get('/api/codeblocks', async (req, res) => {
-    try {
-        const codeBlocks = await CodeBlock.find(); // Fetch all code blocks
-        res.json(codeBlocks); // Send code blocks as JSON
-    } catch (error) {
-        console.error('Error fetching code blocks:', error.response.data);
-        res.status(500).send('Error fetching code blocks');
-    }
+    res.send("hello");
+    // try {
+    //     const codeBlocks = await CodeBlock.find(); // Fetch all code blocks
+    //     res.json(codeBlocks); // Send code blocks as JSON
+    // } catch (error) {
+    //     console.error('Error fetching code blocks:', error.response.data);
+    //     res.status(500).send('Error fetching code blocks');
+    // }
 });
 
 // API endpoint to get a specific code block by ID
