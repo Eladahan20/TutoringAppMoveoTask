@@ -33,7 +33,7 @@ mongoose.connect(mongoURI, {
 // Websocket //
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN ,
+        origin: "https://turoring-app-502bde048aa3.herokuapp.com" || process.env.CLIENT_ORIGIN ,
         methods: ["GET", "POST"],
         credentials: true
     }
@@ -67,10 +67,10 @@ io.on('connection', (socket) => {
             socket.to(blockId).emit('update_code', newCode);
 
             try {
-                // Fetch the solution from MongoDB
+                // Check if code is correct - fetch the solution from MongoDB and compare
                 const codeBlock = await CodeBlock.findById(blockId);
                 if (codeBlock && newCode.trim() === codeBlock.solution.trim()) {
-                    io.to(blockId).emit('code_success'); // Notify all users in the room
+                    io.to(blockId).emit('code_success'); // Notify all users in the room of success
                 }
             } catch (error) {
                 console.error('Error checking solution:', error);

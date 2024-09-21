@@ -1,26 +1,21 @@
 import React, { useEffect, useState } from 'react';
 import axios from 'axios';
 import { Link } from 'react-router-dom';
-import styles from './Lobby.module.css'; // Import the CSS module
+import styles from './Lobby.module.css'; 
 
 const Lobby = () => {
     const [codeBlocks, setCodeBlocks] = useState([]);
-    const [error, setError] = useState(null); // To handle errors
+    const API_URL = process.env.REACT_APP_API_URL; 
 
     useEffect(() => {
+
         const fetchCodeBlocks = async () => {
             try {
-                const API_URL = process.env.REACT_APP_API_URL || 'https://turoring-app-502bde048aa3.herokuapp.com' 
-                const response = await axios.get(`${API_URL}/api/codeblocks`);
-                console.log('Response from API:', response.data); // Log the response data
-                if (Array.isArray(response.data)) {
-                    setCodeBlocks(response.data); // Only set it if it's an array
-                } else {
-                    setError('Unexpected response format');
-                }
+                const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks`);
+                console.log(response.data);
+                setCodeBlocks(response.data);
             } catch (err) {
-                setError('Failed to fetch code blocks');
-                console.error('Error fetching code blocks:', err.message);
+                console.log('Error fetching code blocks:', err.message);
             }
         };
     
