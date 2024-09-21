@@ -89,10 +89,6 @@ io.on('connection', (socket) => {
         });
     });
 });
-app.get('*', (req, res) => {
-    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
-});
-
 
 // EndPoints //
 
@@ -121,6 +117,11 @@ app.get('/api/codeblocks/:id', async (req, res) => {
         res.status(500).send('Error fetching code block');
     }
 });
+
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, 'client', 'build', 'index.html'));
+});
+
 
 
 // Start the server
