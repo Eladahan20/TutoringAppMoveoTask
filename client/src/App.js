@@ -2,6 +2,7 @@ import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import Lobby from './Components/Lobby';
 import CodeBlock from './Components/CodeBlock';
+import './App.css'; // Import global styles
 
 function App() {
     return (
