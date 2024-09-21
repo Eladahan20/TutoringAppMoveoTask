@@ -9,7 +9,7 @@ require('dotenv').config();
 
 // Enable CORS
 app.use(cors({ 
-    origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN , // Your React app URL
+    origin: process.env.CLIENT_ORIGIN , // Your React app URL
     methods: ["GET", "POST"],
     credentials: true // Allow credentials if needed
 }));
@@ -33,7 +33,7 @@ mongoose.connect(mongoURI, {
 // Websocket //
 const io = new Server(server, {
     cors: {
-        origin: "http://localhost:3000" || process.env.CLIENT_ORIGIN ,
+        origin: process.env.CLIENT_ORIGIN ,
         methods: ["GET", "POST"],
         credentials: true
     }
