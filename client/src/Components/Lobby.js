@@ -8,13 +8,12 @@ const Lobby = () => {
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
-            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks`);
+            const response = await axios.get(`/api/codeblocks`);
             setCodeBlocks(response.data);
         };
 
         fetchCodeBlocks();
     }, []);
-console.log(API_URL);
     return (
         <div>
             <h1>Choose Code Block</h1>
