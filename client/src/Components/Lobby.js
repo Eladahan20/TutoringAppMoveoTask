@@ -7,10 +7,21 @@ const Lobby = () => {
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
-            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks`);
-            setCodeBlocks(response.data);
+            try {
+                const API_URL = process.env.REACT_APP_API_URL || 'https://turoring-app-502bde048aa3.herokuapp.com' 
+                const response = await axios.get(`${API_URL}/api/codeblocks`);
+                console.log('Response from API:', response.data); // Log the response data
+                if (Array.isArray(response.data)) {
+                    setCodeBlocks(response.data); // Only set it if it's an array
+                } else {
+                    setError('Unexpected response format');
+                }
+            } catch (err) {
+                setError('Failed to fetch code blocks');
+                console.error('Error fetching code blocks:', err.message);
+            }
         };
-
+    
         fetchCodeBlocks();
     }, []);
     return (
