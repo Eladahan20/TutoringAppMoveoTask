@@ -8,7 +8,7 @@ const Lobby = () => {
 
     useEffect(() => {
         const fetchCodeBlocks = async () => {
-            const response = await axios.get(`${API_URL}/api/codeblocks`);
+            const response = await axios.get(`https://turoring-app-502bde048aa3.herokuapp.com/api/codeblocks`);
             setCodeBlocks(response.data);
         };
 
